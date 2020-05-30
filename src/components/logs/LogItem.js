@@ -10,6 +10,7 @@ const LogItem = ({log}) => {
                 <a href="#edit-log-modal" className={`modal-trigger ${log.completed ? 'red-text' : 'blue-text'}`}
                 >
                     {log.title}</a>
+                    <br></br>
                 <span className='grey-text'>
                     <span className='black-text'>
                         Id: #{log.id}
@@ -21,6 +22,9 @@ const LogItem = ({log}) => {
                         Last Comments on <Moment format='MMMM Do YYYY, h:mm:ss a'>{new Date()}</Moment>
                     </span>
                 </span>
+                <a href='#!' className='secondary-content'>
+                    <i className='material-icons grey-text'>delete</i>
+                </a>
             </div>
         </li>
     );
