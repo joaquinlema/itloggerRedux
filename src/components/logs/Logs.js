@@ -11,10 +11,10 @@ const Logs = () => {
 
     const getLogs = async () => {
         setLoading(true);
-        const res = await fetch('/logs');
+        const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
         const data = await res.json();
 
-        setLogs(data);
+        setLogs([data]);
         setLoading(false);
     }
 
@@ -23,13 +23,13 @@ const Logs = () => {
     }
 
     return (
-        <ul className='collection-with-header'>
+        <ul className='collection with-header'>
             <li className='collection-header'>
                 <h4 className='center'> System logs</h4>
 
             </li>
             {!loading && logs.length === 0 ? (<p className='center'>No logs at all...</p>) : 
-                (logs.map(log=> <li>{log.message}</li>))}
+                (logs.map( (log,index) => <li key={index}>{log.title}</li>))}
             
         </ul>
     )
