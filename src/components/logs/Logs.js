@@ -1,4 +1,5 @@
 import React, {useState, useEffect} from 'react'
+import LogItem from './LogItem';
 
 const Logs = () => {
 
@@ -11,10 +12,10 @@ const Logs = () => {
 
     const getLogs = async () => {
         setLoading(true);
-        const res = await fetch('https://jsonplaceholder.typicode.com/todos/1');
+        const res = await fetch('https://jsonplaceholder.typicode.com/todos/');
         const data = await res.json();
 
-        setLogs([data]);
+        setLogs(data);
         setLoading(false);
     }
 
@@ -29,7 +30,9 @@ const Logs = () => {
 
             </li>
             {!loading && logs.length === 0 ? (<p className='center'>No logs at all...</p>) : 
-                (logs.map( (log,index) => <li key={index}>{log.title}</li>))}
+                (logs.map( (log,index) => 
+                    <LogItem log={log} key={index}/>)
+                )}
             
         </ul>
     )
