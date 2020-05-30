@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import TechSelectOptions from '../techs/TechSelectOptions';
+//import TechSelectOptions from '../techs/TechSelectOptions';
 import PropTypes from 'prop-types';
 //import { addLog } from '../../actions/logActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
@@ -10,7 +10,7 @@ const AddLogModal = ({ addLog }) => {
   const [tech, setTech] = useState('');
 
   const onSubmit = () => {
-    if (message === '' || tech === '') {
+    if (message === '' ) {
       M.toast({ html: 'Please enter a message and tech' });
     } else {
       const newLog = {
@@ -60,7 +60,7 @@ const AddLogModal = ({ addLog }) => {
               <option value='' disabled>
                 Select Technician
               </option>
-              <TechSelectOptions />
+              {/* <TechSelectOptions /> */}
             </select>
           </div>
         </div>
