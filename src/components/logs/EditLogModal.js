@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 //import TechSelectOptions from '../techs/TechSelectOptions';
-import PropTypes from 'prop-types';
+//import PropTypes from 'prop-types';
 //import { addLog } from '../../actions/logActions';
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const EditLogModal = ({ addLog }) => {
+const EditLogModal = () => {
   const [message, setMessage] = useState('');
   const [attention, setAttention] = useState(false);
   const [tech, setTech] = useState('');
@@ -13,6 +13,7 @@ const EditLogModal = ({ addLog }) => {
     if (message === '' ) {
       M.toast({ html: 'Please enter a message and tech' });
     } else {
+      // eslint-disable-next-line no-unused-vars
       const newLog = {
         message,
         attention,
@@ -31,8 +32,12 @@ const EditLogModal = ({ addLog }) => {
     }
   };
 
+  const addLog = (item) => {
+    console.log(item);
+  }
+
   return (
-    <div id='add-log-modal' className='modal' style={modalStyle}>
+    <div id='edit-log-modal' className='modal' style={modalStyle}>
       <div className='modal-content'>
         <h4>Enter System Log</h4>
         <div className='row'>
@@ -93,10 +98,6 @@ const EditLogModal = ({ addLog }) => {
       </div>
     </div>
   );
-};
-
-EditLogModal.propTypes = {
-  addLog: PropTypes.func.isRequired
 };
 
 const modalStyle = {
