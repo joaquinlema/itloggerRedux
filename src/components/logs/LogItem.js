@@ -1,9 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Moment from 'react-moment';
+import { connect } from 'react-redux';
+import { deleteLog } from '../../actions/logActions';
 
+const LogItem = ({log, deleteLog}) => {
 
-const LogItem = ({log}) => {
+    const borrar = () => {
+        deleteLog(log.id);
+    }
+
     return (
         <li className='collection-item'>
             <div>
@@ -22,9 +28,9 @@ const LogItem = ({log}) => {
                         Last Comments on <Moment format='MMMM Do YYYY, h:mm:ss a'>{new Date()}</Moment>
                     </span>
                 </span>
-                <a href='#!' className='secondary-content'>
+                <button type='button' onClick={borrar} className='secondary-content'>
                     <i className='material-icons grey-text'>delete</i>
-                </a>
+                </button>
             </div>
         </li>
     );
@@ -33,7 +39,8 @@ const LogItem = ({log}) => {
 
 LogItem.propTypes = {
     log:PropTypes.object.isRequired,
+    deleteLog: PropTypes.func.isRequired,
 };
 
 
-export default LogItem;
+export default connect(null, { deleteLog } )(LogItem);

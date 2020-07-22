@@ -1,26 +1,19 @@
-import React, {useState, useEffect} from 'react'
+import React, { useEffect} from 'react'
 import LogItem from './LogItem';
 import Preloader from '../layout/Preloader';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { getLogs } from '../../actions/logActions';
 
-const Logs = () => {
-
-    const [logs,setLogs] = useState([]);
-    const [loading, setLoading] = useState(false);
+//nuestro componenete ahora recibe las props tanto de las state attr y las actions
+const Logs = ({log: {logs,loading}, getLogs }) => {
 
     useEffect(() => {
         getLogs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
-    const getLogs = async () => {
-        setLoading(true);
-        const res = await fetch('https://jsonplaceholder.typicode.com/todos/');
-        const data = await res.json();
-
-        setLogs(data);
-        setLoading(false);
-    }
-
-    if(loading){
+    if(loading || logs === null){
         return <Preloader />
     }
 
@@ -39,4 +32,16 @@ const Logs = () => {
     )
 }
 
-export default Logs
+Logs.propTypes = {
+    log: PropTypes.object.isRequired,
+    getLogs: PropTypes.func.isRequired
+  };
+  
+
+// nos traemos los attr que necesitamos del state
+const mapStateProps = state => ({
+    log: state.log//se llama log el state que utilizamos porque es el nombre que le asignamos en index.js del reducer
+});
+
+//todas las actions que utilicemos las importamos y las pasamos como props al componenete
+export default connect(mapStateProps, { getLogs })(Logs)

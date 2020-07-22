@@ -29,8 +29,8 @@ import {
     try {
       setLoading();
   
-      const res = await fetch('/logs');
-      const data = await res.json();
+        const res = await fetch('https://jsonplaceholder.typicode.com/todos/');
+        const data = await res.json();
   
       dispatch({
         type: GET_LOGS,
@@ -49,7 +49,7 @@ import {
     try {
       setLoading();
   
-      const res = await fetch('/logs', {
+      const res = await fetch('https://jsonplaceholder.typicode.com/todos', {
         method: 'POST',
         body: JSON.stringify(log),
         headers: {
@@ -75,7 +75,7 @@ import {
     try {
       setLoading();
   
-      await fetch(`/logs/${id}`, {
+      await fetch(`https://jsonplaceholder.typicode.com/todos/${id}`, {
         method: 'DELETE'
       });
   
@@ -96,7 +96,7 @@ import {
     try {
       setLoading();
   
-      const res = await fetch(`/logs/${log.id}`, {
+      const res = await fetch(`https://jsonplaceholder.typicode.com/todos/${log.id}`, {
         method: 'PUT',
         body: JSON.stringify(log),
         headers: {
@@ -123,7 +123,7 @@ import {
     try {
       setLoading();
   
-      const res = await fetch(`/logs?q=${text}`);
+      const res = await fetch(`https://jsonplaceholder.typicode.com/todos?q=${text}`);
       const data = await res.json();
   
       dispatch({

@@ -23,7 +23,6 @@ const TechItem = ({ tech: { id, name, username }, deleteTech }) => {
 
 TechItem.propTypes = {
   tech: PropTypes.object.isRequired,
-  deleteTech: PropTypes.func.isRequired
 };
 
 export default TechItem
